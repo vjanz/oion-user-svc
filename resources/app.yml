@@ -1,7 +1,7 @@
 app:
   handler: wsgi_handler.handler
   layers:
-  - arn:aws:lambda:us-east-1:464889327419:layer:flask:5
+  - arn:aws:lambda:us-east-1:464889327419:layer:flask:6
   events:
     - http:
         path: /
@@ -13,3 +13,10 @@ app:
         method: get
         cors:
           origin: '*'
+
+    - http:
+        path: /employees/all
+        method: get
+        cors:
+          origin: '*'
+

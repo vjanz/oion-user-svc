@@ -1,7 +1,9 @@
 import os
 from flask import Flask, jsonify
+
+import configuration
 from custom_exceptions import APIException
-from utils import read_json, generate_json_response
+from utils import read_json, generate_json_response, fetch_from_url
 
 app = Flask(__name__)
 with app.app_context():
@@ -28,3 +30,10 @@ def get_users():
         raise APIException(message="Users not found", status_code=404)
     return users_json
 
+
+@app.route("/employees/all")
+def get_employees():
+    data = fetch_from_url(configuration.EMP_SRV_URL)
+    if not data:
+        raise APIException(message="Data not found", status_code=404)
+    return jsonify(data)

@@ -4,13 +4,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+./idea
 .idea/
-.serverless
-.serverless-offline
-.serverless-wsgi
-wsgi_handler.py
-serverless_wsgi.py
+idea
 
 # C extensions
 *.so
@@ -18,7 +14,9 @@ serverless_wsgi.py
 # Distribution / packaging
 .Python
 build/
+notebook.ipynb
 develop-eggs/
+.serverless
 dist/
 downloads/
 eggs/
@@ -34,6 +32,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+venv
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
