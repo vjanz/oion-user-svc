@@ -1,0 +1,27 @@
+pythonRequirements:
+  dockerizePip: non-linux
+wsgi:
+  app: app.app
+  packRequirements: false
+  pipArgs: --no-deps
+domains:
+  production: 'api.xypsylon.xyz'
+  dev: 'devapi.xypsylon.xyz'
+serverless-offline:
+  useDocker: true
+customDomain:
+  domainName: ${self:custom.domains.${self:provider.stage}}
+  basePath: "user-service"
+  createRoute53Record: true
+stages:
+  - production
+  - dev
+ENVIRONMENT:
+  production: 'production'
+  dev: 'dev'
+EMPLOYEES_CSV_OBJECT_KEY:
+  production: ${ssm:/EMP_CSV_OBJECT_KEY_PROD~false}
+  dev: ${ssm:/EMP_CSV_OBJECT_KEY_DEV~false}
+S3_BUCKET_NAME:
+  dev: ${ssm:/S3_BUCKET_NAME_DEV~false}
+  production: ${ssm:/S3_BUCKET_NAME_PROD~false}

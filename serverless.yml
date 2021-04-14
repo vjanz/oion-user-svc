@@ -1,0 +1,27 @@
+service: oion-sls-user
+plugins:
+  - serverless-wsgi
+  - serverless-stage-manager
+  - serverless-domain-manager
+frameworkVersion: '2'
+custom: ${file(resources/customs.yml)}
+provider:
+  name: aws
+  stage: ${opt:stage,'dev'}
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 's3:*'
+          Resource: "arn:aws:s3:::*"
+  runtime: python3.8
+  region: us-east-1
+  apiGateway:
+    shouldStartNameWithService: true
+  environment:
+    API_GATEWAY_BASE_PATH: ${self:custom.customDomain.basePath}
+    ENVIRONMENT: ${self:custom.ENVIRONMENT.${self:provider.stage}}
+package: ${file(resources/package.yml)}
+functions:
+  - ${file(resources/app.yml)}

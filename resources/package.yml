@@ -1,0 +1,11 @@
+exclude:
+  - static/**
+  - node_modules/**
+  - venv/**
+  - .pytest_cache
+  - .serverless-offline
+  - .env
+  - requirements.txt
+  - tests/**
+  - README.md
+  - .serverless
