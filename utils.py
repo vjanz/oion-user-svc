@@ -1,5 +1,5 @@
 import json
-
+import requests
 from flask import jsonify
 
 
@@ -13,3 +13,15 @@ def generate_json_response(data):
     if not data:
         raise Exception("Data is Empty")
     return jsonify(data)
+
+
+def fetch_from_url(url: str):
+    if not url:
+        raise Exception("Url is null")
+    r = requests.get(url)
+    if r.status_code > 400:
+        return f"Couldn't fetch the data from {url}"
+    return r.json()
+
+
+
