@@ -1,4 +1,4 @@
-service: oion-sls-user
+service: oion-user-svc
 plugins:
   - serverless-wsgi
   - serverless-stage-manager
