@@ -33,7 +33,7 @@ def get_users():
 
 @app.route("/employees/all")
 def get_employees():
-    data = fetch_from_url(configuration.EMP_SRV_URL)
+    data = fetch_from_url(configuration.EMPLOYEE_SERVICE_URL)
     if not data:
         raise APIException(message="Data not found", status_code=404)
     return jsonify(data)
